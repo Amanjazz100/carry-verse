@@ -60,22 +60,23 @@ const HeroSection = () => {
         initial="hidden"
         animate={controls}
       >
-        {/* Outer motion.div for the Image Box: Handles both scroll-based size and hover scale */}
+        
         <motion.div
           className={`
             mx-auto rounded-full border-4 border-yellow-500 shadow-xl
             ${scrolled ? 'w-32 md:w-48 lg:w-60' : 'w-48 md:w-72 lg:w-96'}
-            transition-all duration-700 ease-in-out // CSS transition for smooth width/height change on scroll
-            flex items-center justify-center overflow-hidden // Ensures inner image stays within bounds
+            transition-all duration-700 ease-in-out 
+
+            flex items-center justify-center overflow-hidden 
           `}
           variants={itemVariants}
           initial="hidden"
           animate="visible"
-          // Framer Motion: Apply whileHover directly to this outer div
+          
           whileHover={{
             scale: 1.1, // Increased scale for a more noticeable "pop" (from 1.07 to 1.1)
-            boxShadow: "0 0 30px rgba(252, 211, 38, 0.8)", // Added a glowing yellow shadow on hover
-            transition: { // Specific spring transition for the hover effect
+            boxShadow: "0 0 30px rgba(252, 211, 38, 0.8)", 
+            transition: { 
               type: 'spring',
               stiffness: 400,
               damping: 10
@@ -83,12 +84,12 @@ const HeroSection = () => {
           }}
           whileTap={{ scale: 0.95 }}
         >
-          {/* Inner <img>: Simply fills its parent container */}
-          <motion.img // Changed to motion.img to ensure transition-transform from object-cover is not interfering
+          
+          <motion.img 
             src={carryImg2}
             alt="CarryMinati"
             className="w-full h-full object-cover rounded-full"
-            // No whileHover here as it's on the parent
+            
           />
         </motion.div>
 
