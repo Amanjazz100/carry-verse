@@ -1,10 +1,11 @@
 import React from 'react';
 
 const ContentSection = () => {
+  // Use the correct YouTube embed URLs for iframes
   const videos = [
-    { title: "YouTube VS TikTok", url: "https://www.youtube.com/embed/6Dh-RL__uN4" },
-    { title: "The Art of Roasting", url: "https://www.youtube.com/embed/Bxd4FZZv5dY" },
-    { title: "Among Us With Thug Squad", url: "https://www.youtube.com/embed/IYzZRYV1cZQ" },
+    { title: "VARDAAN SONG", url: "https://www.youtube.com/embed/7mFvyrNHZRY" },
+    { title: "Ladkiyo Ka Best Friend", url: "https://www.youtube.com/embed/l6BChpns5w8?si=6dTjWs6qIGa6_xIz" },
+    { title: "YAALGAAR ", url: "https://www.youtube.com/embed/zzwRbKI2pn4" },
   ];
 
   return (
