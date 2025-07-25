@@ -54,7 +54,8 @@ const Loader = () => {
       ${loadingScreenFullyHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
     >
       <h1
-        className={`text-4xl md:text-6xl font-extrabold text-red-500 transition-all duration-1000 ease-in-out`}
+        // Adjusted text sizes for better Android display
+        className={`text-3xl sm:text-4xl md:text-6xl font-extrabold text-red-500 transition-all duration-1000 ease-in-out`}
       >
         {/* Safest Render Check: Only render if displayedTextChars is an array */}
         {Array.isArray(displayedTextChars) && displayedTextChars.map((char, index) => (
