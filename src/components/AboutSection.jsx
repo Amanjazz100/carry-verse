@@ -42,7 +42,7 @@ const AboutSection = () => {
           CarryMinati's journey showcases his versatility, from viral videos and rap tracks to engaging live streams. He stands as a true pioneer in India's digital entertainment space, continuously delivering entertainment with unmatched energy and influencing a generation through his genuine voice.
         </motion.p>
 
-        {/* Call-to-Action Button */}
+       
         <motion.a
           href="#content"
           className="mt-6 inline-block px-8 py-4 bg-yellow-500 text-black font-bold text-lg rounded-full shadow-lg hover:bg-yellow-400 hover:scale-105 transition-all duration-300 transform"
