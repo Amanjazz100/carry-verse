@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence for exit animations
-import { FaBars, FaTimes } from 'react-icons/fa'; // Import icons for mobile menu
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State to control mobile menu visibility
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Variants for the main header (Navbar) animation on load - NO CHANGE
   const headerVariants = {
     hidden: { y: -100, opacity: 0 },
     visible: {
@@ -20,24 +19,22 @@ const Navbar = () => {
     },
   };
 
-  // Variants for individual list items (links) - NO CHANGE
   const listItemVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   };
 
-  // Variants for the mobile menu overlay itself
   const mobileMenuVariants = {
     hidden: { opacity: 0, height: 0 },
     visible: {
       opacity: 1,
-      height: "auto", // Animates height to auto
+      height: "auto",
       transition: {
         type: "spring",
         stiffness: 100,
         damping: 15,
-        when: "beforeChildren", // Animates parent before children
-        staggerChildren: 0.1, // Stagger children links
+        when: "beforeChildren",
+        staggerChildren: 0.1,
       },
     },
     exit: {
@@ -47,14 +44,13 @@ const Navbar = () => {
         type: "spring",
         stiffness: 100,
         damping: 15,
-        when: "afterChildren", // Animates parent after children
-        staggerChildren: 0.05, // Stagger children links
-        staggerDirection: -1, // Stagger in reverse order on exit
+        when: "afterChildren",
+        staggerChildren: 0.05,
+        staggerDirection: -1,
       },
     },
   };
 
-  // Variants for mobile menu links (children of mobile menu overlay)
   const mobileLinkVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
@@ -64,12 +60,11 @@ const Navbar = () => {
   return (
     <motion.header
       className="bg-gray-950 shadow-lg sticky top-0 z-40 transition-shadow duration-300"
-      variants={headerVariants} // Apply animation variants
-      initial="hidden"          // Start from 'hidden' state
-      animate="visible"         // Animate to 'visible' state when component mounts
+      variants={headerVariants}
+      initial="hidden"
+      animate="visible"
     >
       <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo/Title */}
         <motion.h1
           className="text-2xl md:text-3xl font-extrabold text-yellow-400 cursor-pointer select-none"
           whileHover={{
@@ -82,16 +77,12 @@ const Navbar = () => {
           CarryMinati
         </motion.h1>
 
-        {/* Desktop Navigation Links */}
         <ul className="hidden md:flex space-x-8 text-base md:text-lg items-center">
-          {['Home', 'About', 'Content', 'Socials', 'Contact'].map((item, index) => (
+          {['Home', 'About', 'Content', 'Socials', 'Contact'].map((item) => (
             <motion.li
               key={item}
               className="relative group"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-              }}
+              whileHover={{ scale: 1.05, y: -2 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
               <a
@@ -105,36 +96,33 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile Menu Button - Now Functional */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-yellow-400 text-3xl focus:outline-none hover:text-yellow-300 transition-colors duration-200"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} // Accessibility
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? <FaTimes /> : <FaBars />} {/* Toggle icon */}
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay - Now Functional with Framer Motion */}
-      {/* AnimatePresence is needed around conditionally rendered motion components for exit animations */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden bg-gray-900 pb-4 overflow-hidden" // overflow-hidden crucial for height animation
+            className="md:hidden bg-gray-900 pb-4 overflow-hidden"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"
-            exit="exit" // Apply exit variant
+            exit="exit"
           >
-            <ul className="flex flex-col items-center space-y-4 text-base py-4"> {/* Added py-4 for internal spacing */}
+            <ul className="flex flex-col items-center space-y-4 text-base py-4">
               {['Home', 'About', 'Content', 'Socials', 'Contact'].map((item) => (
                 <motion.li key={item} variants={mobileLinkVariants}>
                   <a
                     href={`#${item.toLowerCase() === 'contact' ? 'footer' : item.toLowerCase()}`}
-                    className="hover:text-yellow-400 text-gray-200 text-lg block py-2" // Larger text, block for better tap area
-                    onClick={() => setMobileMenuOpen(false)} // Close menu on link click
+                    className="hover:text-yellow-400 text-gray-200 text-lg block py-2"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item}
                   </a>
