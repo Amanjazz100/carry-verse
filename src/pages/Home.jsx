@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+
 import { motion } from "framer-motion";
 import carryImg from "../assets/carryminati.jpg"; // ✅ Step 1: Image import karo
 
@@ -6,8 +6,6 @@ const Home = () => {
   return (
     <section className="h-screen bg-black text-white flex items-center justify-center flex-col">
       
-      {/* 👇 Heading */}
-      <motion.h1 
         className="text-5xl font-bold text-yellow-400"
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}
@@ -16,7 +14,7 @@ const Home = () => {
         Welcome to CarryMinati's World
       </motion.h1>
 
-      {/* ✅ Step 2: YAHAN IMAGE ADD KARO (heading ke neeche) */}
+      
       <motion.img
         src={carryImg}
         alt="CarryMinati"
@@ -26,7 +24,6 @@ const Home = () => {
         transition={{ duration: 1, delay: 0.5 }}
       />
 
-      {/* 👇 Paragraph */}
       <motion.p 
         className="mt-4 text-lg text-gray-300"
         initial={{ opacity: 0 }}
