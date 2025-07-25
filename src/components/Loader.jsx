@@ -9,11 +9,9 @@ const Loader = () => {
 
   const intervalRef = useRef(null);
   const charIndexRef = useRef(0);
-  const initialDelayRef = useRef(null); // Ref for initial delay timeout
+  const initialDelayRef = useRef(null);
 
   useEffect(() => {
-    // Introduce a small initial delay BEFORE typing starts
-    // This gives React ample time to settle the initial state
     initialDelayRef.current = setTimeout(() => {
       intervalRef.current = setInterval(() => {
         if (charIndexRef.current < loadingText.length) {
@@ -34,11 +32,10 @@ const Loader = () => {
             }, 1500);
           }, 1000);
         }
-      }, 100); // Typing speed per character
-    }, 50); // Small initial delay before starting the typing interval
+      }, 100);
+    }, 50);
 
     return () => {
-      // Cleanup both interval and initial delay timeout
       if (initialDelayRef.current) {
         clearTimeout(initialDelayRef.current);
       }
@@ -46,7 +43,7 @@ const Loader = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, []); // Runs only once on mount
+  }, []);
 
   return (
     <div
@@ -54,10 +51,8 @@ const Loader = () => {
       ${loadingScreenFullyHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
     >
       <h1
-        // Adjusted text sizes for better Android display
         className={`text-3xl sm:text-4xl md:text-6xl font-extrabold text-red-500 transition-all duration-1000 ease-in-out`}
       >
-        {/* Safest Render Check: Only render if displayedTextChars is an array */}
         {Array.isArray(displayedTextChars) && displayedTextChars.map((char, index) => (
           <span
             key={index}
@@ -70,7 +65,6 @@ const Loader = () => {
             }}
             className="inline-block"
           >
-            {/* Even safer check for char, though char should never be undefined here */}
             {char === ' ' ? '\u00A0' : (char || '')}
           </span>
         ))}
